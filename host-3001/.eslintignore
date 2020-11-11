@@ -1,0 +1,5 @@
+node_modules
+dist/*
+__generated__
+webpack.config.js
+.eslintrc.js

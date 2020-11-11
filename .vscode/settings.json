@@ -1,0 +1,3 @@
+{
+  "eslint.workingDirectories": [ "./host-3001", "./remote-3002" ]
+}
