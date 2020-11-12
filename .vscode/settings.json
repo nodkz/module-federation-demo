@@ -1,3 +1,3 @@
 {
-  "eslint.workingDirectories": [ "./host-3001", "./remote-3002" ]
+  "eslint.workingDirectories": [ "./host-5001", "./remote-5002" ]
 }

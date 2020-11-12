@@ -1,0 +1,37 @@
+.button {
+  font-family: 'Open Sans';
+  background: url(public/assets/holybg.png);
+  background-size: cover;
+  font-size: 100px;
+  margin: 30px;
+  padding: 5px;
+  color: #fff;
+  border: 5px solid #226fa2;
+  outline: 0;
+
+  &:hover {
+    color: #ccc;
+    border-color: #941e84;
+  }
+
+  &:active {
+    border-color: #BBB;
+  }
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans'), local('OpenSans-Regular'),
+    url('public/assets/fonts/open-sans/Regular/OpenSans-Regular.woff2') format('woff2'),
+    url('public/assets/fonts/open-sans/Regular/OpenSans-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'),
+    url('public/assets/fonts/open-sans/Bold/OpenSans-Bold.woff2') format('woff2'),
+    url('public/assets/fonts/open-sans/Bold/OpenSans-Bold.woff') format('woff');
+}

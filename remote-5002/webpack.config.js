@@ -11,15 +11,16 @@ module.exports = {
   mode: isProduction ? 'production' : 'development',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-    allowedHosts: ['localhost'],
-    port: 3001,
+    // allowedHosts: ['localhost'],
+    disableHostCheck: true,
+    port: 5002,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
       'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
     },
     historyApiFallback: {
-      index: 'index.html', // open index page fo any missing route
+      index: 'index.html', // open index page for any missing route
     },
   },
   output: {
@@ -102,32 +103,25 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'mf_shell',
-      library: { type: 'var', name: 'mf_shell' },
+      name: 'remote5002',
+      library: { type: 'var', name: 'remote5002' },
       filename: 'remoteEntry.js',
       exposes: {
-        // './Navbar': './src/Navbar',
+        './Button': './src/expose/Button.tsx',
       },
       shared: {
         react: {
-          // this version should match a value which is present in nextjs-app/RemoteComponent.tsx
-          version: '16-branch',
-          requiredVersion: '16.13.1',
-          strictVersion: false,
-          singleton: true,
-        },
-        'react-dom': {
-          version: '16-branch',
-          requiredVersion: '16.13.1',
-          strictVersion: false,
+          requiredVersion: '17.0.1',
           singleton: true,
         },
       },
     }),
+
     new HtmlWebpackPlugin({
       template: './public/index.html',
       publicPath: '/',
     }),
+
     isProduction
       ? new MiniCssExtractPlugin({
           filename: 'assets/css/[name].css',

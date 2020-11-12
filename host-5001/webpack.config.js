@@ -12,14 +12,14 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     allowedHosts: ['localhost'],
-    port: 3002,
+    port: 5001,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
       'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
     },
     historyApiFallback: {
-      index: 'index.html', // open index page fo any missing route
+      index: 'index.html', // open index page for any missing route
     },
   },
   output: {
@@ -102,24 +102,15 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'mf_shell',
-      library: { type: 'var', name: 'mf_shell' },
-      filename: 'remoteEntry.js',
-      exposes: {
-        // './Navbar': './src/Navbar',
+      // name: 'app5001',
+      // library: { type: 'var', name: 'mf_shell' },
+      // filename: 'remoteEntry.js',
+      remotes: {
+        remote5002: 'remote5002@',
       },
       shared: {
         react: {
-          // this version should match a value which is present in nextjs-app/RemoteComponent.tsx
-          version: '16-branch',
-          requiredVersion: '16.13.1',
-          strictVersion: false,
-          singleton: true,
-        },
-        'react-dom': {
-          version: '16-branch',
-          requiredVersion: '16.13.1',
-          strictVersion: false,
+          requiredVersion: '17.0.1',
           singleton: true,
         },
       },
