@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ErrorBoundary } from './ErrorBoundary';
 
+// const customCalcPromise = import('remote5002/customCalc').then((m) => m.default);
 const RemoteButton = React.lazy(() => import('remote5002/Button'));
 
 export function App() {

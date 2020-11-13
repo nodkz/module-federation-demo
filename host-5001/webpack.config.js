@@ -106,7 +106,7 @@ module.exports = {
       // library: { type: 'var', name: 'mf_shell' },
       // filename: 'remoteEntry.js',
       remotes: {
-        remote5002: 'remote5002@',
+        remote5002: 'remote5002@', // ✨✨✨ `@` is an undocumented DamnMagic! It helps to avoid Error `parse error at !==` and use import(`remote5002/Button`) in the app code
       },
       shared: {
         react: {

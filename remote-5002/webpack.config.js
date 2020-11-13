@@ -108,6 +108,7 @@ module.exports = {
       filename: 'remoteEntry.js',
       exposes: {
         './Button': './src/expose/Button.tsx',
+        './customCalc': './src/expose/customCalc.ts',
       },
       shared: {
         react: {
