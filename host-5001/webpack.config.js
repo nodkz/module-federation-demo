@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin;
+const DashboardPlugin = require('@module-federation/dashboard-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -102,11 +103,12 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      // name: 'app5001',
-      // library: { type: 'var', name: 'mf_shell' },
+      name: 'host5001',
+      // library: { type: 'var', name: 'host5001' },
       // filename: 'remoteEntry.js',
       remotes: {
-        remote5002: 'remote5002@', // ✨✨✨ `@` is an undocumented DamnMagic! It helps to avoid Error `parse error at !==` and use import(`remote5002/Button`) in the app code
+        /* ✨✨✨ `@` is an undocumented DamnMagic! 🤯 */
+        remote5002: 'remote5002@',
       },
       shared: {
         react: {
@@ -118,6 +120,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       publicPath: '/',
+    }),
+
+    // Run docker run -p 3000:3000 -it scriptedalchemy/mf-dashboard:latest
+    new DashboardPlugin({
+      dashboardURL: 'http://localhost:3000/api/update',
     }),
     isProduction
       ? new MiniCssExtractPlugin({

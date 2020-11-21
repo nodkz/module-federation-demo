@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin;
+const DashboardPlugin = require('@module-federation/dashboard-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -45,6 +46,7 @@ module.exports = {
         },
       },
       {
+        // TODO: почему бандл-лоадер (чуть больше контекста)
         test: /bootstrap\.tsx$/,
         loader: 'bundle-loader',
         options: {
@@ -77,7 +79,7 @@ module.exports = {
             ? {
                 loader: MiniCssExtractPlugin.loader,
                 options: {
-                  publicPath: '', // fix at build Error: Automatic publicPath is not supported in this browser
+                  publicPath: '/', // fix at build Error: Automatic publicPath is not supported in this browser
                 },
               }
             : 'style-loader',
@@ -104,9 +106,11 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: 'remote5002',
+      // вспомнить почему
       library: { type: 'var', name: 'remote5002' },
       filename: 'remoteEntry.js',
       exposes: {
+        // Will work like import('remote5002/Button');
         './Button': './src/expose/Button.tsx',
         './customCalc': './src/expose/customCalc.ts',
       },
@@ -121,6 +125,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       publicPath: '/',
+    }),
+
+    // Run docker run -p 3000:3000 -it scriptedalchemy/mf-dashboard:latest
+    new DashboardPlugin({
+      dashboardURL: 'http://localhost:3000/api/update',
     }),
 
     isProduction

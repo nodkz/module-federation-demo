@@ -1,3 +1,3 @@
 export default function customCalc(n: number) {
-  return n + 100;
+  return n + 1000;
 }

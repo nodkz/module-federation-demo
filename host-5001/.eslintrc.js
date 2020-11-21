@@ -42,6 +42,7 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 0,
     '@typescript-eslint/no-empty-function': 0,
     '@typescript-eslint/ban-ts-comment': 0,
+    '@typescript-eslint/no-var-requires': 0,
     curly: ['error', 'all'],
     'padding-line-between-statements': [
       'warn',
