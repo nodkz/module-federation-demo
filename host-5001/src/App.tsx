@@ -34,7 +34,7 @@ export function App() {
         </React.Suspense>
       </ErrorBoundary>
 
-      <div style={{ marginTop: '500px' }}>
+      <div style={{ marginTop: '600px', marginBottom: '200px' }}>
         <h2>Code example:</h2>
         <img src={require('public/assets/app-code.png').default} width={900} />
       </div>
